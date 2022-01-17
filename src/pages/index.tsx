@@ -35,7 +35,13 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
           {latestEpisodes.map(ep => {
             return (
               <li key={ep.id}>
-                <Image src={ep.thumbnail} alt={ep.title} objectFit="cover" width={192} height={192} />
+                <Image
+                  src={ep.thumbnail}
+                  alt={ep.title}
+                  objectFit="cover"
+                  width={192}
+                  height={192}
+                />
 
                 <div className={styles.episodeDetails}>
                   <a href="">{ep.title}</a>
@@ -54,7 +60,46 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
       </section>
 
       <section className={styles.allEpisodes}>
-        
+        <h2>All the episodes</h2>
+
+        <table cellSpacing={0}>
+          <thead>
+            <th></th>
+            <th>Podcast</th>
+            <th>Members</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {allEpisodes.map(ep => {
+              return (
+                <tr key={ep.id}>
+                  <td>
+                    <Image
+                      width={120}
+                      height={120}
+                      src={ep.thumbnail}
+                      alt={ep.title}
+                      objectFit="cover"
+                    />
+                  </td>
+                  <td>
+                    <a href="">{ep.title}</a>
+                  </td>
+                  <td>{ep.members}</td>
+                  <td style={{ width: 120 }}>{ep.publishedAt}</td>
+                  <td>{ep.durationAsString}</td>
+                  <td>
+                    <button type="button">
+                      <Image src="/play-green.svg " width={60} height={60} alt="Play Button"/>
+                    </button>
+                  </td>
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
       </section>
     </div>
   )
